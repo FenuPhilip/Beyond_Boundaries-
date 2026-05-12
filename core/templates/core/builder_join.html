@@ -1,0 +1,281 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Join Ecosystem — DARKMATTER DYNAMICS{% endblock %}
+
+{% block content %}
+<div class="form-page">
+
+  <!-- ═══ BUILDER WALKTHROUGH ═══ -->
+  <div class="builder-walkthrough-wrap">
+    <p class="section-label" style="text-align:center; margin-bottom:1.2rem;"> Builder Path</p>
+    <div class="builder-carousel-track-outer">
+      <div class="builder-carousel-track" id="builderCarouselTrack">
+
+        <div class="bc-tile">
+          <div class="bc-tile-icon"><i class="ph ph-wrench"></i></div>
+          <div class="bc-tile-title">Skill Up</div>
+          <div class="bc-tile-desc">Sharpen your engineering skills in real domains</div>
+        </div>
+        <div class="bc-tile">
+          <div class="bc-tile-icon">&#128101;</div>
+          <div class="bc-tile-title">Join Network</div>
+          <div class="bc-tile-desc">Connect with builders and mentors across India</div>
+        </div>
+        <div class="bc-tile">
+          <div class="bc-tile-icon">&#128736;</div>
+          <div class="bc-tile-title">Build Projects</div>
+          <div class="bc-tile-desc">Contribute to real IoT, robotics, and AI builds</div>
+        </div>
+        <div class="bc-tile">
+          <div class="bc-tile-icon">&#127881;</div>
+          <div class="bc-tile-title">Get Paid</div>
+          <div class="bc-tile-desc">Earn through client project contributions</div>
+        </div>
+        <div class="bc-tile">
+          <div class="bc-tile-icon"><i class="ph ph-lightning"></i></div>
+          <div class="bc-tile-title">Level Up</div>
+          <div class="bc-tile-desc">Gain experience, reputation and engineering cred</div>
+        </div>
+        <div class="bc-tile">
+          <div class="bc-tile-icon"><i class="ph ph-graduation-cap"></i></div>
+          <div class="bc-tile-title">Mentor Others</div>
+          <div class="bc-tile-desc">Guide the next wave of builders with your expertise</div>
+        </div>
+        <!-- Clones for infinite loop -->
+        <div class="bc-tile">
+          <div class="bc-tile-icon"><i class="ph ph-wrench"></i></div>
+          <div class="bc-tile-title">Skill Up</div>
+          <div class="bc-tile-desc">Sharpen your engineering skills in real domains</div>
+        </div>
+        <div class="bc-tile">
+          <div class="bc-tile-icon">&#128101;</div>
+          <div class="bc-tile-title">Join Network</div>
+          <div class="bc-tile-desc">Connect with builders and mentors across India</div>
+        </div>
+        <div class="bc-tile">
+          <div class="bc-tile-icon">&#128736;</div>
+          <div class="bc-tile-title">Build Projects</div>
+          <div class="bc-tile-desc">Contribute to real IoT, robotics, and AI builds</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!-- ═══ END WALKTHROUGH ═══ -->
+
+  <div class="form-container">
+
+    <div class="form-header">
+      <span class="form-badge"> Builder / Mentor Application</span>
+      <h1 class="form-title">Join the <span style="color:var(--green)">Ecosystem</span></h1>
+      <p class="form-subtitle">Apply to become a builder or mentor in the DARKMATTER DYNAMICS engineering network.</p>
+    </div>
+
+    <form method="post" enctype="multipart/form-data" novalidate>
+      {% csrf_token %}
+
+      <!-- BASIC -->
+      <div class="form-section">
+        <h2 class="form-section-title">&#128100; Personal Information</h2>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Full Name <span class="required">*</span></label>
+            {{ form.full_name }}
+            {{ form.full_name.errors }}
+          </div>
+          <div class="form-group">
+            <label class="form-label">WhatsApp <span class="required">*</span></label>
+            {{ form.whatsapp }}
+            {{ form.whatsapp.errors }}
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Email <span class="required">*</span></label>
+            {{ form.email }}
+            {{ form.email.errors }}
+          </div>
+          <div class="form-group">
+            <label class="form-label">District / Location <span class="required">*</span></label>
+            {{ form.district_location }}
+            {{ form.district_location.errors }}
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">College / Organization <small style="color:var(--muted)">(optional)</small></label>
+          {{ form.college_organization }}
+        </div>
+      </div>
+
+      <!-- ROLE & DOMAIN -->
+      <div class="form-section">
+        <h2 class="form-section-title">&#128736; Role &amp; Domain</h2>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Role <span class="required">*</span></label>
+            {{ form.role }}
+            {{ form.role.errors }}
+          </div>
+          <div class="form-group">
+            <label class="form-label">Experience Level <span class="required">*</span></label>
+            {{ form.experience_level }}
+            {{ form.experience_level.errors }}
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Primary Domain <span class="required">*</span></label>
+            {{ form.primary_domain }}
+            {{ form.primary_domain.errors }}
+          </div>
+          <div class="form-group" id="domain-other-group" style="display:none;">
+            <label class="form-label">Specify Domain</label>
+            {{ form.domain_other }}
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Skills &amp; Experience <span class="required">*</span></label>
+          {{ form.skills_experience }}
+          {{ form.skills_experience.errors }}
+        </div>
+      </div>
+
+      <!-- PORTFOLIO -->
+      <div class="form-section">
+        <h2 class="form-section-title">&#128279; Portfolio &amp; Links</h2>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">GitHub</label>
+            {{ form.github }}
+          </div>
+          <div class="form-group">
+            <label class="form-label">LinkedIn</label>
+            {{ form.linkedin }}
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Portfolio Website</label>
+            {{ form.portfolio_website }}
+          </div>
+          <div class="form-group">
+            <label class="form-label">YouTube</label>
+            {{ form.youtube }}
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Google Drive Link</label>
+            {{ form.drive_link }}
+          </div>
+          <div class="form-group">
+            <label class="form-label">Other Links</label>
+            {{ form.other_links }}
+          </div>
+        </div>
+      </div>
+
+      <!-- CONTRIBUTION -->
+      <div class="form-section">
+        <h2 class="form-section-title">&#127919; Contribution Interests</h2>
+        <div class="checkbox-group">
+          <label class="checkbox-item">{{ form.contrib_paid_builds }} Paid Project Builds</label>
+          <label class="checkbox-item">{{ form.contrib_mentorship }} Mentorship</label>
+          <label class="checkbox-item">{{ form.contrib_technical_guidance }} Technical Guidance</label>
+          <label class="checkbox-item">{{ form.contrib_research }} Research &amp; Experimentation</label>
+          <label class="checkbox-item">{{ form.contrib_collaboration }} Collaboration</label>
+          <label class="checkbox-item">{{ form.contrib_community }} Community Building</label>
+          <label class="checkbox-item">{{ form.contrib_workshops }} Workshops / Events</label>
+        </div>
+      </div>
+
+      <!-- AVAILABILITY & FINAL -->
+      <div class="form-section">
+        <h2 class="form-section-title">&#128197; Availability &amp; Final</h2>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Availability <span class="required">*</span></label>
+            {{ form.availability }}
+            {{ form.availability.errors }}
+          </div>
+          <div class="form-group">
+            <label class="form-label">Resume / Portfolio File</label>
+            {{ form.resume_file }}
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Why do you want to join DARKMATTER DYNAMICS? <span class="required">*</span></label>
+          {{ form.why_join }}
+          {{ form.why_join.errors }}
+        </div>
+        <div class="form-group">
+          <label class="form-label">Additional Notes</label>
+          {{ form.additional_notes }}
+        </div>
+      </div>
+
+      <div class="form-submit">
+        <button type="submit" class="btn btn-primary">&#128640; Submit Application</button>
+        <a href="{% url 'home' %}" class="btn btn-ghost">&larr; Back</a>
+        <span class="form-note">"Applying to join a serious engineering ecosystem."</span>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% block extra_js %}
+<script>
+ ── Builder Carousel Animation ──
+(function () {
+  const track = document.getElementById('builderCarouselTrack');
+  const tiles = Array.from(track.querySelectorAll('.bc-tile'));
+  const TILE_W = 220 + 20;  width + gap
+  let currentOffset = 0;
+  let centerIndex = Math.floor(tiles.length / 2);
+  let raf;
+
+  function updateZoom() {
+    const outerRect = track.parentElement.getBoundingClientRect();
+    const centerX = outerRect.left + outerRect.width / 2;
+    tiles.forEach(tile => {
+      const r = tile.getBoundingClientRect();
+      const tileCenterX = r.left + r.width / 2;
+      const dist = Math.abs(centerX - tileCenterX);
+      const maxDist = outerRect.width / 2;
+      const proximity = Math.max(0, 1 - dist / (maxDist * 0.6));
+      const scale = 1 + proximity * 0.32;
+      const brightness = 0.5 + proximity * 0.5;
+      tile.style.transform = `scale(${scale})`;
+      tile.style.opacity = `${brightness}`;
+      tile.style.zIndex = Math.round(proximity * 10);
+      if (proximity > 0.85) {
+        tile.classList.add('bc-tile-active');
+      } else {
+        tile.classList.remove('bc-tile-active');
+      }
+    });
+  }
+
+  let speed = 0.55;  px per frame
+  function animate() {
+    currentOffset -= speed;
+     Reset when the first set of tiles scrolls out
+    const totalOriginal = 6;  original (non-clone) tiles
+    const resetThreshold = totalOriginal * TILE_W;
+    if (Math.abs(currentOffset) >= resetThreshold) {
+      currentOffset += resetThreshold;
+    }
+    track.style.transform = `translateX(${currentOffset}px)`;
+    updateZoom();
+    raf = requestAnimationFrame(animate);
+  }
+
+   Pause on hover
+  track.parentElement.addEventListener('mouseenter', () => { cancelAnimationFrame(raf); });
+  track.parentElement.addEventListener('mouseleave', () => { raf = requestAnimationFrame(animate); });
+
+  animate();
+})();
+</script>
+{% endblock %}
+{% endblock %}

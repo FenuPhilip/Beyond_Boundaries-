@@ -1,0 +1,133 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Mentor Request — DARKMATTER DYNAMICS{% endblock %}
+
+{% block content %}
+<div class="form-page">
+  <div class="form-container">
+
+    <div class="form-header">
+      <span class="form-badge"> Mentorship Request</span>
+      <h1 class="form-title">Request <span style="color:var(--green)">Mentorship</span></h1>
+      <p class="form-subtitle">Get technical guidance for your project, workshop, or learning journey.</p>
+    </div>
+
+    <form method="post" enctype="multipart/form-data" novalidate>
+      {% csrf_token %}
+
+      <!-- BASIC INFO -->
+      <div class="form-section">
+        <h2 class="form-section-title">👤 Basic Information</h2>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Full Name <span class="required">*</span></label>
+            {{ form.full_name }}
+            {{ form.full_name.errors }}
+          </div>
+          <div class="form-group">
+            <label class="form-label">WhatsApp <span class="required">*</span></label>
+            {{ form.whatsapp }}
+            {{ form.whatsapp.errors }}
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Email <span class="required">*</span></label>
+            {{ form.email }}
+            {{ form.email.errors }}
+          </div>
+          <div class="form-group">
+            <label class="form-label">District / Location <span class="required">*</span></label>
+            {{ form.district_location }}
+            {{ form.district_location.errors }}
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">College / Organization <span class="required">*</span></label>
+          {{ form.college_organization }}
+          {{ form.college_organization.errors }}
+        </div>
+      </div>
+
+      <!-- MENTORSHIP DETAILS -->
+      <div class="form-section">
+        <h2 class="form-section-title"><i class="ph ph-graduation-cap"></i> Mentorship Details</h2>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Domain <span class="required">*</span></label>
+            {{ form.domain }}
+            {{ form.domain.errors }}
+          </div>
+          <div class="form-group" id="domain-other-group" style="display:none;">
+            <label class="form-label">Specify Domain</label>
+            {{ form.domain_other }}
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">What do you need help with? <span class="required">*</span></label>
+          {{ form.help_required }}
+          {{ form.help_required.errors }}
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Mentorship Type <span class="required">*</span></label>
+            {{ form.mentorship_type }}
+            {{ form.mentorship_type.errors }}
+          </div>
+          <div class="form-group" id="mentorship-other-group" style="display:none;">
+            <label class="form-label">Specify Mentorship Type</label>
+            {{ form.mentorship_type_other }}
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Current Status <span class="required">*</span></label>
+            {{ form.current_status }}
+            {{ form.current_status.errors }}
+          </div>
+          <div class="form-group">
+            <label class="form-label">Preferred Mode <span class="required">*</span></label>
+            {{ form.preferred_mode }}
+            {{ form.preferred_mode.errors }}
+          </div>
+        </div>
+      </div>
+
+      <!-- SCHEDULING -->
+      <div class="form-section">
+        <h2 class="form-section-title"><i class="ph ph-calendar-blank"></i> Scheduling & Contact</h2>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Preferred Contact</label>
+            {{ form.contact_method }}
+          </div>
+          <div class="form-group">
+            <label class="form-label">Availability</label>
+            {{ form.availability }}
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Event Date (if applicable)</label>
+            {{ form.event_date }}
+          </div>
+          <div class="form-group">
+            <label class="form-label">Reference Files</label>
+            {{ form.reference_files }}
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Additional Notes</label>
+          {{ form.additional_notes }}
+        </div>
+      </div>
+
+      <div class="form-submit">
+        <button type="submit" class="btn btn-primary"><i class="ph ph-graduation-cap"></i> Submit Mentor Request</button>
+        <a href="{% url 'home' %}" class="btn btn-ghost">← Back</a>
+        <span class="form-note">"You're entering an engineering support ecosystem."</span>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

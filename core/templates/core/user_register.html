@@ -1,0 +1,44 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Create Account — DARKMATTER DYNAMICS{% endblock %}
+{% block content %}
+<div class="account-page">
+  <div class="account-card">
+    <div class="account-card-header">
+      <span class="form-badge">Registration</span>
+      <h1 class="form-title">Create <span style="color:var(--green)">Account</span></h1>
+      <p class="form-subtitle">Register to track your project and mentor requests.</p>
+    </div>
+
+    {% if errors %}
+    <div class="account-errors">
+      {% for e in errors %}<p class="account-error-item">⚠ {{ e }}</p>{% endfor %}
+    </div>
+    {% endif %}
+
+    <form method="post" class="account-form" id="registerForm">
+      {% csrf_token %}
+      <div class="form-group">
+        <label class="form-label">Username <span class="required">*</span></label>
+        <input type="text" name="username" class="dm-input" placeholder="e.g. darkbuilder42" value="{{ username|default:'' }}" required autocomplete="username">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email <span class="required">*</span></label>
+        <input type="email" name="email" class="dm-input" placeholder="your@email.com" value="{{ email|default:'' }}" required autocomplete="email">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Password <span class="required">*</span></label>
+        <input type="password" name="password1" class="dm-input" placeholder="Min. 8 characters" required autocomplete="new-password">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Confirm Password <span class="required">*</span></label>
+        <input type="password" name="password2" class="dm-input" placeholder="Repeat password" required autocomplete="new-password">
+      </div>
+      <div class="form-submit" style="margin-top:1.5rem">
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center"><i class="ph ph-rocket"></i> Create Account</button>
+      </div>
+    </form>
+    <p class="account-alt-link">Already have an account? <a href="{% url 'user_login' %}">Sign In →</a></p>
+  </div>
+</div>
+{% endblock %}

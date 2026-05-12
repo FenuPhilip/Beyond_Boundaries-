@@ -1,0 +1,256 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}DARKMATTER DYNAMICS — Engineering Beyond Boundaries{% endblock %}
+
+{% block content %}
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Engineering Ecosystem</p>
+    <img
+      src="{% static 'core/images/nameboard_and_logo.png' %}"
+      alt="DARKMATTER DYNAMICS"
+      class="hero-nameboard"
+    >
+    <p class="hero-tagline">Engineering &bull; Robotics &bull; Intelligent Systems</p>
+    <div class="hero-services">
+      <span class="service-chip">IoT Systems</span>
+      <span class="service-chip">Robotics</span>
+      <span class="service-chip">Drones &amp; Rovers</span>
+      <span class="service-chip">Embedded Electronics</span>
+      <span class="service-chip">Web Platforms</span>
+      <span class="service-chip">Mobile Apps</span>
+      <span class="service-chip">Automation</span>
+      <span class="service-chip">AI Systems</span>
+    </div>
+    <div class="hero-actions">
+      <a href="{% url 'project_request' %}" class="btn btn-primary"><i class="ph ph-gear"></i> Register a Project</a>
+      <a href="{% url 'mentor_request' %}" class="btn btn-outline"><i class="ph ph-graduation-cap"></i> Request Mentorship</a>
+      <a href="{% url 'builder_join' %}" class="btn btn-ghost"><i class="ph ph-wrench"></i> Join Ecosystem</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ STAT BAR ═══ -->
+<div class="stat-bar">
+  <div class="stat-bar-inner">
+    <div class="stat-item">
+      <span class="stat-num">9+</span>
+      <span class="stat-label">Domains</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">100%</span>
+      <span class="stat-label">Hands-On</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num"><i class="ph ph-infinity"></i></span>
+      <span class="stat-label">Build Potential</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">01</span>
+      <span class="stat-label">Goal: Ship It</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SERVICES ═══ -->
+<section class="section" id="services">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <span class="section-label"> What we build</span>
+      <h2 class="section-title">Engineering <span class="accent">Domains</span></h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-card-img-wrap">
+          <img src="{% static 'core/images/service_iot.png' %}" alt="IoT Systems" class="service-card-img">
+        </div>
+        <div class="service-card-body">
+          <span class="service-icon"><i class="ph ph-globe"></i></span>
+          <span class="service-name">IoT Systems</span>
+        </div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-card-img-wrap">
+          <img src="{% static 'core/images/service_robotics.png' %}" alt="Robotics" class="service-card-img">
+        </div>
+        <div class="service-card-body">
+          <span class="service-icon"><i class="ph ph-robot"></i></span>
+          <span class="service-name">Robotics Projects</span>
+        </div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-card-img-wrap">
+          <img src="{% static 'core/images/service_drone.png' %}" alt="Drones &amp; Rovers" class="service-card-img">
+        </div>
+        <div class="service-card-body">
+          <span class="service-icon"><i class="ph ph-airplane-tilt"></i></span>
+          <span class="service-name">Drones &amp; Rovers</span>
+        </div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-card-img-wrap">
+          <img src="{% static 'core/images/service_embedded.png' %}" alt="Embedded Electronics" class="service-card-img">
+        </div>
+        <div class="service-card-body">
+          <span class="service-icon"><i class="ph ph-plug"></i></span>
+          <span class="service-name">Embedded Electronics</span>
+        </div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-card-img-wrap">
+          <img src="{% static 'core/images/service_web.png' %}" alt="Web Platforms" class="service-card-img">
+        </div>
+        <div class="service-card-body">
+          <span class="service-icon"><i class="ph ph-desktop"></i></span>
+          <span class="service-name">Web Platforms</span>
+        </div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-card-img-wrap">
+          <img src="{% static 'core/images/service_mobile.png' %}" alt="Mobile Apps" class="service-card-img">
+        </div>
+        <div class="service-card-body">
+          <span class="service-icon"><i class="ph ph-device-mobile"></i></span>
+          <span class="service-name">Mobile Apps</span>
+        </div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-card-img-wrap">
+          <img src="{% static 'core/images/service_automation.png' %}" alt="Automation Systems" class="service-card-img">
+        </div>
+        <div class="service-card-body">
+          <span class="service-icon"><i class="ph ph-lightning"></i></span>
+          <span class="service-name">Automation Systems</span>
+        </div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-card-img-wrap">
+          <img src="{% static 'core/images/service_ai.png' %}" alt="AI Integration" class="service-card-img">
+        </div>
+        <div class="service-card-body">
+          <span class="service-icon"><i class="ph ph-brain"></i></span>
+          <span class="service-name">AI Integration</span>
+        </div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-card-img-wrap">
+          <img src="{% static 'core/images/service_academic.png' %}" alt="Academic Projects" class="service-card-img">
+        </div>
+        <div class="service-card-body">
+          <span class="service-icon"><i class="ph ph-graduation-cap"></i></span>
+          <span class="service-name">Academic Projects</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="glow-divider"></div>
+
+<!-- ═══ WORKFLOW ═══ -->
+<section class="section">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <span class="section-label"> Project lifecycle</span>
+      <h2 class="section-title">How We <span class="accent">Build</span></h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="workflow-steps">
+      <div class="workflow-step reveal">
+        <div class="step-num">01</div>
+        <p class="step-label">Requirement Discussion</p>
+      </div>
+      <div class="workflow-step reveal">
+        <div class="step-num">02</div>
+        <p class="step-label">Project Registration</p>
+      </div>
+      <div class="workflow-step reveal">
+        <div class="step-num">03</div>
+        <p class="step-label">Planning &amp; Dev</p>
+      </div>
+      <div class="workflow-step reveal">
+        <div class="step-num">04</div>
+        <p class="step-label">Testing &amp; Validation</p>
+      </div>
+      <div class="workflow-step reveal">
+        <div class="step-num">05</div>
+        <p class="step-label">Delivery &amp; Demo</p>
+      </div>
+      <div class="workflow-step reveal">
+        <div class="step-num">06</div>
+        <p class="step-label">Deployment &amp; Support</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="glow-divider"></div>
+
+<!-- ═══ ABOUT ═══ -->
+<section class="section" id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <span class="section-label">About DARKMATTER DYNAMICS</span>
+        <h2 class="section-title" style="text-align:left; margin-bottom:1.5rem">Builder <span class="accent">Ecosystem</span></h2>
+        <p>DARKMATTER DYNAMICS is a builder ecosystem focused on engineering innovation, custom project development, and practical technology solutions. From concept to deployment, every project is built with direct technical interaction and real-world functionality in mind.</p>
+        <p>We connect builders, developers, and mentors across multiple engineering domains — creating a collaborative space where ideas become working systems.</p>
+        <a href="{% url 'builder_join' %}" class="btn btn-outline" style="margin-top:1rem">Join the Ecosystem &rarr;</a>
+      </div>
+      <div class="about-logo-wrap reveal">
+        <img src="{% static 'core/images/DM_logo.png' %}" alt="DARKMATTER DYNAMICS" class="about-logo">
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="glow-divider"></div>
+
+<!-- ═══ ACTION CARDS ═══ -->
+<section class="section">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <span class="section-label"> Get involved</span>
+      <h2 class="section-title">Enter the <span class="accent">Ecosystem</span></h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="action-cards">
+      <a href="{% url 'project_request' %}" class="action-card reveal">
+        <span class="action-card-icon"><i class="ph ph-gear"></i></span>
+        <h3 class="action-card-title">Project Request</h3>
+        <p class="action-card-desc">Have an idea? Submit your project — IoT, robotics, web, app, embedded, or AI. We handle it from concept to delivery.</p>
+        <span class="action-card-cta">Register Project</span>
+      </a>
+      <a href="{% url 'mentor_request' %}" class="action-card reveal">
+        <span class="action-card-icon"><i class="ph ph-graduation-cap"></i></span>
+        <h3 class="action-card-title">Mentor Request</h3>
+        <p class="action-card-desc">Need guidance on your build? Request technical mentorship for projects, workshops, debugging, or learning support.</p>
+        <span class="action-card-cta">Get Mentored</span>
+      </a>
+      <a href="{% url 'builder_join' %}" class="action-card reveal">
+        <span class="action-card-icon"><i class="ph ph-wrench"></i></span>
+        <h3 class="action-card-title">Join as Builder</h3>
+        <p class="action-card-desc">Are you a builder, developer, or mentor? Join the DARKMATTER DYNAMICS ecosystem and contribute to real engineering projects.</p>
+        <span class="action-card-cta">Apply Now</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ BUILD THE IMPOSSIBLE ═══ -->
+<section class="section" style="padding: 80px 2rem; background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+  <div class="section-inner" style="text-align:center;">
+    <p class="hero-eyebrow reveal" style="animation:none; opacity:1;"> Mission Statement</p>
+    <h2 class="section-title reveal" style="font-size: clamp(2rem, 6vw, 4rem); margin: 1rem 0;">BUILD THE <span class="accent">IMPOSSIBLE</span></h2>
+    <p class="hero-tagline reveal" style="animation:none; opacity:1; margin-bottom: 2rem;">Engineering Beyond Boundaries</p>
+    <a href="{% url 'project_request' %}" class="btn btn-primary reveal">Start Your Project &rarr;</a>
+  </div>
+</section>
+
+{% endblock %}

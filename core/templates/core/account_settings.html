@@ -1,0 +1,73 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Account Settings — DARKMATTER DYNAMICS{% endblock %}
+{% block content %}
+<div class="account-page">
+  <div class="account-card" style="max-width:640px">
+    <div class="account-card-header">
+      <span class="form-badge"> Account Settings</span>
+      <h1 class="form-title"><span style="color:var(--green)">Your</span> Profile</h1>
+      <p class="form-subtitle">Update your username, email, or password.</p>
+    </div>
+
+    {% if errors %}
+    <div class="account-errors">
+      {% for e in errors %}<p class="account-error-item">⚠ {{ e }}</p>{% endfor %}
+    </div>
+    {% endif %}
+
+    {% if success_msg %}
+    <div class="account-success-msg">✔ {{ success_msg }}</div>
+    {% endif %}
+
+    <!-- Profile Info -->
+    <div class="form-section" style="margin-bottom:1.5rem">
+      <h2 class="form-section-title">👤 Identity</h2>
+      <form method="post" id="updateInfoForm">
+        {% csrf_token %}
+        <input type="hidden" name="action" value="update_info">
+        <div class="form-group">
+          <label class="form-label">Username <span class="required">*</span></label>
+          <input type="text" name="username" class="dm-input" value="{{ user.username }}" required autocomplete="username">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email <span class="required">*</span></label>
+          <input type="email" name="email" class="dm-input" value="{{ user.email }}" required autocomplete="email">
+        </div>
+        <div class="form-submit" style="margin-top:1rem">
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+          <a href="{% url 'account_dashboard' %}" class="btn btn-ghost">← Dashboard</a>
+        </div>
+      </form>
+    </div>
+
+    <!-- Change Password -->
+    <div class="form-section">
+      <h2 class="form-section-title"><i class="ph ph-lock"></i> Change Password</h2>
+      <form method="post" id="changePasswordForm">
+        {% csrf_token %}
+        <input type="hidden" name="action" value="change_password">
+        <div class="form-group">
+          <label class="form-label">Current Password <span class="required">*</span></label>
+          <input type="password" name="current_password" class="dm-input" placeholder="Your current password" required autocomplete="current-password">
+        </div>
+        <div class="form-group">
+          <label class="form-label">New Password <span class="required">*</span></label>
+          <input type="password" name="new_password1" class="dm-input" placeholder="Min. 8 characters" required autocomplete="new-password">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Confirm New Password <span class="required">*</span></label>
+          <input type="password" name="new_password2" class="dm-input" placeholder="Repeat new password" required autocomplete="new-password">
+        </div>
+        <div class="form-submit" style="margin-top:1rem">
+          <button type="submit" class="btn btn-outline"><i class="ph ph-lock"></i> Update Password</button>
+        </div>
+      </form>
+    </div>
+
+    <div style="margin-top:2rem; text-align:center">
+      <a href="{% url 'user_logout' %}" class="btn btn-ghost">Logout</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

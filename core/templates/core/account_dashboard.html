@@ -1,0 +1,192 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}My Dashboard — DARKMATTER DYNAMICS{% endblock %}
+{% block content %}
+<div class="account-dashboard-page">
+  <div class="section-inner">
+
+    <!-- Header -->
+    <div class="dashboard-header">
+      <div>
+        <span class="form-badge">User Account</span>
+        <h1 class="form-title" style="margin-bottom:0.25rem">
+          Welcome, <span style="color:var(--green)">{{ user.username }}</span>
+          {% if profile and profile.approved_role != 'none' %}
+            <span class="dm-role-tag dm-role-{{ profile.approved_role }}">{{ profile.get_approved_role_display }}</span>
+          {% endif %}
+        </h1>
+        <p class="form-subtitle" style="display:flex; align-items:center; gap:15px; flex-wrap:wrap; margin-top:0.5rem;">
+          <span>{{ user.email }}</span>
+          {% if profile and profile.approved_role in 'builder,both' %}
+            <span style="width:1px; height:14px; background:var(--border);"></span>
+            <form method="POST" action="{% url 'toggle_work_status' %}" style="display:inline-flex; align-items:center;">
+              {% csrf_token %}
+              <label style="display:inline-flex; align-items:center; gap:8px; cursor:pointer; margin:0; background:var(--surface); padding:4px 10px; border-radius:20px; border:1px solid var(--border);">
+                <input type="checkbox" name="is_accepting_work" onChange="this.form.submit()" {% if profile.is_accepting_work %}checked{% endif %} style="accent-color:var(--green); width:14px; height:14px; cursor:pointer; margin:0;">
+                <span style="font-size:0.7rem; font-family:var(--font-ui); font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:{% if profile.is_accepting_work %}var(--green){% else %}var(--text-dim){% endif %};">
+                  {% if profile.is_accepting_work %}Accepting Work{% else %}Not Accepting Work{% endif %}
+                </span>
+              </label>
+            </form>
+          {% endif %}
+        </p>
+      </div>
+      <div class="dashboard-header-actions">
+        <a href="{% url 'account_settings' %}" class="btn btn-outline"><i class="ph ph-gear"></i> Settings</a>
+        <a href="{% url 'user_logout' %}" class="btn btn-ghost">Logout</a>
+      </div>
+    </div>
+
+    <div class="glow-divider" style="margin:2rem 0;"></div>
+
+    <!-- Quick actions -->
+    <div class="dashboard-quick-actions">
+      <a href="{% url 'project_request' %}" class="dashboard-quick-card">
+        <span class="dq-icon"><i class="ph ph-gear"></i></span>
+        <span class="dq-label">New Project Request</span>
+      </a>
+      <a href="{% url 'mentor_request' %}" class="dashboard-quick-card">
+        <span class="dq-icon"><i class="ph ph-graduation-cap"></i></span>
+        <span class="dq-label">Request Mentorship</span>
+      </a>
+    </div>
+
+    <div class="glow-divider" style="margin:2rem 0;"></div>
+
+    <!-- Project Requests -->
+    <section class="dashboard-section">
+      <div class="dashboard-section-title">
+        <span class="section-label">Project Requests</span>
+        <span class="dashboard-count">{{ project_requests.count }} submission{{ project_requests.count|pluralize }}</span>
+      </div>
+
+      {% if project_requests %}
+        <div class="compact-list">
+          {% for req in project_requests %}
+          <details class="compact-card">
+            <summary class="compact-summary">
+              <div class="compact-summary-main">
+                <span class="compact-title"><i class="ph ph-gear"></i> {{ req.project_title }}</span>
+                <div class="compact-meta">
+                  <span class="compact-meta-item">{{ req.get_domain_display }}</span>
+                  {% if req.deadline %}<span class="compact-meta-item">Due: {{ req.deadline|date:"d M Y" }}</span>{% endif %}
+                  <span class="compact-meta-item">{{ req.submitted_at|date:"d M Y, g:i A" }}</span>
+                </div>
+              </div>
+              <div class="compact-status">
+                <span class="order-status status-{{ req.status }}">{{ req.get_status_display }}</span>
+              </div>
+            </summary>
+            <div class="compact-details">
+              <p class="compact-desc">{{ req.project_description }}</p>
+              <div class="compact-info-grid">
+                <div><strong>Contact Method</strong> {{ req.get_contact_method_display }}</div>
+                <div><strong>Name on Form</strong> {{ req.full_name }}</div>
+                <div><strong>Email</strong> {{ req.email }}</div>
+                <div><strong>WhatsApp</strong> {{ req.whatsapp }}</div>
+              </div>
+            </div>
+          </details>
+          {% endfor %}
+        </div>
+      {% else %}
+        <div class="order-empty">
+          <span class="order-empty-icon"><i class="ph ph-envelope-open"></i></span>
+          <p>No project requests yet.</p>
+          <a href="{% url 'project_request' %}" class="btn btn-outline" style="margin-top:1rem">Register a Project →</a>
+        </div>
+      {% endif %}
+    </section>
+
+    <div class="glow-divider" style="margin:2rem 0;"></div>
+
+    <!-- Mentor Requests -->
+    <section class="dashboard-section">
+      <div class="dashboard-section-title">
+        <span class="section-label">Mentor Requests</span>
+        <span class="dashboard-count">{{ mentor_requests.count }} submission{{ mentor_requests.count|pluralize }}</span>
+      </div>
+
+      {% if mentor_requests %}
+        <div class="compact-list">
+          {% for req in mentor_requests %}
+          <details class="compact-card">
+            <summary class="compact-summary">
+              <div class="compact-summary-main">
+                <span class="compact-title"><i class="ph ph-graduation-cap"></i> {{ req.get_mentorship_type_display }} Mentorship</span>
+                <div class="compact-meta">
+                  <span class="compact-meta-item">{{ req.get_domain_display }}</span>
+                  {% if req.event_date %}<span class="compact-meta-item">Event: {{ req.event_date|date:"d M Y" }}</span>{% endif %}
+                  <span class="compact-meta-item">{{ req.submitted_at|date:"d M Y, g:i A" }}</span>
+                </div>
+              </div>
+              <div class="compact-status">
+                <span class="order-status status-{{ req.current_status }}">{{ req.get_current_status_display }}</span>
+              </div>
+            </summary>
+            <div class="compact-details">
+              <p class="compact-desc">{{ req.help_required }}</p>
+              <div class="compact-info-grid">
+                <div><strong>Preferred Mode</strong> {{ req.get_preferred_mode_display }}</div>
+                <div><strong>Contact Method</strong> {{ req.get_contact_method_display }}</div>
+                <div><strong>Name on Form</strong> {{ req.full_name }}</div>
+                <div><strong>College/Org</strong> {{ req.college_organization }}</div>
+              </div>
+            </div>
+          </details>
+          {% endfor %}
+        </div>
+      {% else %}
+        <div class="order-empty">
+          <span class="order-empty-icon"><i class="ph ph-envelope-open"></i></span>
+          <p>No mentor requests yet.</p>
+          <a href="{% url 'mentor_request' %}" class="btn btn-outline" style="margin-top:1rem">Request Mentorship →</a>
+        </div>
+      {% endif %}
+    </section>
+
+    <div class="glow-divider" style="margin:2rem 0;"></div>
+
+    <!-- Builder / Mentor Applications -->
+    <section class="dashboard-section">
+      <div class="dashboard-section-title">
+        <span class="section-label">Ecosystem Applications</span>
+        <span class="dashboard-count">{{ builder_apps.count }} submission{{ builder_apps.count|pluralize }}</span>
+      </div>
+
+      {% if builder_apps %}
+        <div class="order-list">
+          {% for app in builder_apps %}
+          <div class="order-card">
+            <div class="order-card-top">
+              <div class="order-card-info">
+                <span class="order-type-badge order-badge-builder"><i class="ph ph-wrench"></i> {{ app.get_role_display }}</span>
+                <h3 class="order-title">{{ app.get_primary_domain_display }}</h3>
+                <p class="order-meta">{{ app.get_experience_level_display }} · {{ app.submitted_at|date:"d M Y, g:i A" }}</p>
+              </div>
+              <div class="order-status-wrap">
+                {% if app.is_approved %}
+                  <span class="dm-role-tag dm-role-{{ app.role }}"><i class="ph ph-check-circle"></i> Approved — {{ app.get_role_display }}</span>
+                {% else %}
+                  <span class="order-status" style="background:rgba(255,204,0,0.15);color:#ffcc00;border:1px solid #ffcc0044"><i class="ph ph-hourglass"></i> Pending Review</span>
+                {% endif %}
+              </div>
+            </div>
+            <div class="order-card-detail">
+              <p class="order-desc">{{ app.skills_experience|truncatechars:180 }}</p>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        <div class="order-empty">
+          <span class="order-empty-icon"><i class="ph ph-wrench"></i></span>
+          <p>Haven't applied to join the ecosystem yet?</p>
+          <a href="{% url 'builder_join' %}" class="btn btn-outline" style="margin-top:1rem">Join as Builder / Mentor →</a>
+        </div>
+      {% endif %}
+    </section>
+
+  </div>
+</div>
+{% endblock %}

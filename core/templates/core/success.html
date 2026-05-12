@@ -1,0 +1,32 @@
+{% extends 'core/base.html' %}
+{% block title %}Submitted — DARKMATTER DYNAMICS{% endblock %}
+
+{% block content %}
+<div class="success-page">
+  <div class="success-card">
+    <span class="success-icon">
+      {% if form_type == 'project_request' %}<i class="ph ph-gear"></i>
+      {% elif form_type == 'mentor_request' %}<i class="ph ph-graduation-cap"></i>
+      {% else %}<i class="ph ph-rocket"></i>{% endif %}
+    </span>
+    <h1 class="success-title">
+      {% if form_type == 'project_request' %}Project Request Received
+      {% elif form_type == 'mentor_request' %}Mentor Request Received
+      {% else %}Application Submitted{% endif %}
+    </h1>
+    <p class="success-msg">
+      {% if form_type == 'project_request' %}
+        Your project request has been logged in the DARKMATTER DYNAMICS system. We'll review the details and reach out through your preferred contact method.
+      {% elif form_type == 'mentor_request' %}
+        Your mentorship request has been received. We'll connect you with the right mentor based on your domain and requirements.
+      {% else %}
+        Your application to join the DARKMATTER DYNAMICS ecosystem has been submitted. We'll review your profile and get back to you.
+      {% endif %}
+    </p>
+    <p style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); margin-bottom: 2rem;">
+      "You're entering an engineering support ecosystem."
+    </p>
+    <a href="{% url 'home' %}" class="btn btn-outline">← Return Home</a>
+  </div>
+</div>
+{% endblock %}

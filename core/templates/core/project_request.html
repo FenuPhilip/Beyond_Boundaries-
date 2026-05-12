@@ -1,0 +1,132 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Project Request — DARKMATTER DYNAMICS{% endblock %}
+
+{% block content %}
+<div class="form-page">
+  <div class="form-container">
+
+    <div class="form-header">
+      <span class="form-badge"> Project Registration</span>
+      <h1 class="form-title">Submit a Project <span style="color:var(--green)">Request</span></h1>
+      <p class="form-subtitle">Describe your build — we'll take it from concept to working system.</p>
+    </div>
+
+    <form method="post" enctype="multipart/form-data" novalidate>
+      {% csrf_token %}
+
+      <!-- BASIC INFO -->
+      <div class="form-section">
+        <h2 class="form-section-title">👤 Basic Information</h2>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="{{ form.full_name.id_for_label }}">Full Name <span class="required">*</span></label>
+            {{ form.full_name }}
+            {{ form.full_name.errors }}
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="{{ form.whatsapp.id_for_label }}">WhatsApp <span class="required">*</span></label>
+            {{ form.whatsapp }}
+            {{ form.whatsapp.errors }}
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="{{ form.email.id_for_label }}">Email <span class="required">*</span></label>
+            {{ form.email }}
+            {{ form.email.errors }}
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="{{ form.district_location.id_for_label }}">District / Location <span class="required">*</span></label>
+            {{ form.district_location }}
+            {{ form.district_location.errors }}
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="{{ form.college_organization.id_for_label }}">College / Organization <span class="required">*</span></label>
+          {{ form.college_organization }}
+          {{ form.college_organization.errors }}
+        </div>
+      </div>
+
+      <!-- PROJECT DETAILS -->
+      <div class="form-section">
+        <h2 class="form-section-title">🔧 Project Details</h2>
+        <div class="form-group">
+          <label class="form-label" for="{{ form.project_title.id_for_label }}">Project Title <span class="required">*</span></label>
+          {{ form.project_title }}
+          {{ form.project_title.errors }}
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="{{ form.domain.id_for_label }}">Domain <span class="required">*</span></label>
+            {{ form.domain }}
+            {{ form.domain.errors }}
+          </div>
+          <div class="form-group" id="domain-other-group" style="display:none;">
+            <label class="form-label" for="{{ form.domain_other.id_for_label }}">Specify Domain</label>
+            {{ form.domain_other }}
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="{{ form.deadline.id_for_label }}">Expected Deadline</label>
+            {{ form.deadline }}
+            {{ form.deadline.errors }}
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="{{ form.project_description.id_for_label }}">Project Description <span class="required">*</span></label>
+          {{ form.project_description }}
+          {{ form.project_description.errors }}
+        </div>
+      </div>
+
+      <!-- DELIVERABLES -->
+      <div class="form-section">
+        <h2 class="form-section-title">📦 Required Deliverables</h2>
+        <div class="checkbox-group">
+          <label class="checkbox-item">{{ form.deliverable_working_project }} Working Project</label>
+          <label class="checkbox-item">{{ form.deliverable_source_code }} Source Code</label>
+          <label class="checkbox-item">{{ form.deliverable_documentation }} Documentation</label>
+          <label class="checkbox-item">{{ form.deliverable_report }} Report</label>
+          <label class="checkbox-item">{{ form.deliverable_ppt }} PPT / Presentation</label>
+          <label class="checkbox-item">{{ form.deliverable_circuit_diagram }} Circuit Diagram</label>
+          <label class="checkbox-item">{{ form.deliverable_mobile_app }} Mobile App</label>
+          <label class="checkbox-item">{{ form.deliverable_website }} Website</label>
+          <label class="checkbox-item">{{ form.deliverable_live_demo }} Live Demo</label>
+        </div>
+        <div class="form-group" style="margin-top:1rem;">
+          <label class="form-label" for="{{ form.deliverable_other.id_for_label }}">Other Deliverables</label>
+          {{ form.deliverable_other }}
+        </div>
+      </div>
+
+      <!-- FILES & CONTACT -->
+      <div class="form-section">
+        <h2 class="form-section-title">📎 References & Contact</h2>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="{{ form.contact_method.id_for_label }}">Preferred Contact <span class="required">*</span></label>
+            {{ form.contact_method }}
+            {{ form.contact_method.errors }}
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="{{ form.reference_files.id_for_label }}">Reference Files</label>
+            {{ form.reference_files }}
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="{{ form.additional_notes.id_for_label }}">Additional Notes</label>
+          {{ form.additional_notes }}
+        </div>
+      </div>
+
+      <div class="form-submit">
+        <button type="submit" class="btn btn-primary"><i class="ph ph-gear"></i> Submit Project Request</button>
+        <a href="{% url 'home' %}" class="btn btn-ghost">← Back</a>
+        <span class="form-note">"You're entering an engineering support ecosystem."</span>
+      </div>
+
+    </form>
+  </div>
+</div>
+{% endblock %}
